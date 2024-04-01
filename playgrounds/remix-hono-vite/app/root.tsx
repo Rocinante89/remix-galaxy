@@ -1,3 +1,4 @@
+import { useElementSize } from '@remix-galaxy/hooks';
 import {
 	Links,
 	Meta,
@@ -9,6 +10,9 @@ import {
 import "~/tailwind.css";
 
 export default function App() {
+	const [ref, size] = useElementSize<HTMLBodyElement>();
+	console.log('size:', size);
+
 	return (
 		<html lang="en" className="h-dvh w-screen bg-zinc-900 text-zinc-50">
 			<head>
@@ -20,7 +24,7 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body className="size-full">
+			<body ref={ref} className="size-full">
 				<Outlet />
 				<ScrollRestoration />
 				<Scripts />
